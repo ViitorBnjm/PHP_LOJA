@@ -87,7 +87,7 @@ if(isset($_POST['sub'])){
 
                 <tr>
                     <td>
-                        <a href="login.php"> Login</a>
+                        <a href="loginv2.php"> Login</a>
                     </td>
                 </tr>
             </table>
