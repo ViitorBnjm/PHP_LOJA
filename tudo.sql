@@ -60,7 +60,7 @@ INSERT INTO `profile_reg` (`idProfile`, `nameProfile`) VALUES
 CREATE TABLE `reg` (
   `name` varchar(20) NOT NULL UNIQUE,
   `username` varchar(20) NOT NULL UNIQUE,
-  `password` varchar(50) NOT NULL UNIQUE,
+  `password` varchar(50) NOT NULL,
   `city` varchar(15) NOT NULL,
   `image` varchar(50),
   `gender` varchar(10),
