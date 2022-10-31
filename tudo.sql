@@ -136,45 +136,31 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-CREATE TABLE compra(
-	IdCompra INT PRIMARY KEY AUTO_INCREMENT,
-	dataCompra datetime DEFAULT now(),
-    valorCompraTotal float,
-    fk_IdReg int not null,
-    foreign key (fk_IdReg) references reg(id)
+CREATE TABLE PRODUTO(
+	ID_PRODUTO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME_PRODUTO VARCHAR(30) NOT NULL	
 );
 
 
-CREATE TABLE produto(
-	IdProduto INT PRIMARY KEY AUTO_INCREMENT,
-	nomeProduto VARCHAR(50) NOT NULL,
-    preco float not null
+CREATE TABLE COMPRA(
+	ID_COMPRA INT PRIMARY KEY AUTO_INCREMENT,
+	DATA_COMPRA DATETIME DEFAULT NOW(),
+    TOTAL_PRECO FLOAT
 );
 
-CREATE TABLE compra_produto(
-	fkCompra INT NOT NULL,
-	fkProduto INT NOT NULL,
-    
-	PRIMARY KEY (fkCompra, fkProduto),
-	FOREIGN KEY(fkCompra) REFERENCES compra(IdCompra),
-	FOREIGN KEY(fkProduto) REFERENCES produto(IdProduto)
+
+CREATE TABLE COMPRA_PRODUTO(
+    ID INT NOT NULL AUTO_INCREMENT,
+	FK_PRODUTO INT NOT NULL,
+	FK_COMPRA INT NOT NULL,
+    QTD_PRODUTO INT NOT NULL,
+	PRIMARY KEY (ID, FK_PRODUTO, FK_COMPRA),
+	FOREIGN KEY(FK_PRODUTO) REFERENCES PRODUTO(ID_PRODUTO),
+	FOREIGN KEY(FK_COMPRA) REFERENCES COMPRA(ID_COMPRA)
 );
 
-insert into produto (nomeProduto, preco) values ("Memoria RAM",350.90);
-insert into produto (nomeProduto, preco) values ("Placa de Video",952.50);
-insert into produto (nomeProduto, preco) values ("HD",390.50);
 
 
-insert into compra (fk_IdReg) values (3);
+INSERT INTO PRODUTO (NOME_PRODUTO) VALUES ('TECLADO x13'), ('MONITOR 39');
 
-alter table compra_produto add qtd_produto int ;
-
-insert into compra_produto (fkCompra,fkProduto,qtd_produto) values (1,3,5);
-insert into compra_produto (fkCompra,fkProduto,qtd_produto) values (1,2,2);
-
-select * from compra_produto as cp
-inner join produto as p on p.IdProduto = cp.fkProduto
-inner join compra as c on c.IdCompra = cp.fkCompra
-inner join reg as r on r.id = c.fk_IdReg;
-
-select * from compra;
+INSERT INTO COMPRA (TOTAL_PRECO) VALUES (0);
