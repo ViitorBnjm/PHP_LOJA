@@ -59,8 +59,8 @@ INSERT INTO `profile_reg` (`idProfile`, `nameProfile`) VALUES
 
 CREATE TABLE `reg` (
   `name` varchar(20) NOT NULL UNIQUE,
-  `username` varchar(20) NOT NULL ,
-  `password` varchar(50) NOT NULL ,
+  `username` varchar(20) NOT NULL UNIQUE,
+  `password` varchar(50) NOT NULL,
   `city` varchar(15) NOT NULL,
   `image` varchar(50),
   `gender` varchar(10),
@@ -131,7 +131,3 @@ ALTER TABLE `reg`
 ALTER TABLE `reg`
   ADD CONSTRAINT `reg_ibfk_1` FOREIGN KEY (`fk_idProfile`) REFERENCES `profile_reg` (`idProfile`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
